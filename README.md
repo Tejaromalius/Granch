@@ -17,7 +17,7 @@ A Terminal User Interface (TUI) application for creating Git branches following 
 
 Granch creates branches following this pattern:
 
-```
+```bash
 @{category}/{uuid}
 ```
 
@@ -28,7 +28,7 @@ Where:
 
 **Example branches:**
 
-```
+```text
 @feat/a3b2c1d4
 @fix/9e8f7a6b
 @refactor/2c3d4e5f
@@ -67,10 +67,8 @@ The `@{category}/{uuid}` format offers several advantages:
 
 ### From Source
 
-1. Clone the repository:
-
-```
-git clone <https://github.com/yourusername/granch.git>
+```bash
+git clone <https://github.com/tejaromalius/granch.git>
 cd granch
 go mod tidy
 go build -o granch
@@ -81,8 +79,8 @@ sudo mv granch /usr/local/bin/
 
 If you have Go installed, you can install directly:
 
-```
-go install github.com/Tejaromalius/granch@latest
+```bash
+go install github.com/Tejaromalius/Granch@latest
 ```
 
 ## License

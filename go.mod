@@ -1,4 +1,4 @@
-module github.com/Tejaromalius/Granch
+module github.com/Tejaromalius/granch
 
 go 1.24.0
 
