@@ -51,7 +51,11 @@ echo -e "${BLUE}==>${NC} Detected platform: ${GREEN}$OS/$ARCH${NC}"
 
 # Find the best asset match
 # We look for assets containing the OS and ARCH in their name
-ASSET_URL=$(echo "$RELEASE_DATA" | jq -r ".assets[] | select(.name | contains(\"$OS\") and contains(\"$ARCH\")) | .browser_download_url" | head -n 1)
+# Support both 'amd64' and 'x86_64' naming conventions
+ASSET_URL=$(echo "$RELEASE_DATA" | jq -r ".assets[] | 
+    select(.name | contains(\"$OS\")) | 
+    select(.name | contains(\"$ARCH\") or contains(\"x86_64\")) | 
+    .browser_download_url" | head -n 1)
 
 if [ -z "$ASSET_URL" ] || [ "$ASSET_URL" == "null" ]; then
     echo -e "${RED}Error:${NC} Could not find a suitable asset for your platform."

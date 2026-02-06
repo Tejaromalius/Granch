@@ -44,9 +44,11 @@ if ([Environment]::Is64BitProcess) {
 }
 
 # Find suitable asset
+# We look for assets that match Windows and the detected architecture
 $Asset = $ReleaseData.assets | Where-Object { 
-    ($_.name -like "*windows*" -or $_.name -like "*.exe" -or $_.name -like "*.zip") -and 
-    ($_.name -like "*$Arch*" -or $_.name -like "*x64*")
+    $MatchesOS = ($_.name -like "*windows*" -or $_.name -like "*.exe" -or $_.name -like "*.zip")
+    $MatchesArch = ($_.name -like "*$Arch*" -or $_.name -like "*x64*" -or $_.name -like "*86_64*")
+    $MatchesOS -and $MatchesArch
 } | Select-Object -First 1
 
 if ($null -eq $Asset) {
