@@ -43,16 +43,14 @@ if ([Environment]::Is64BitProcess) {
     $Arch = "386"
 }
 
-# Find suitable asset
-# We look for assets that match Windows and the detected architecture
+# Find suitable asset - look for Windows zip files
+# GoReleaser creates files like: granch_windows_x86_64.zip
 $Asset = $ReleaseData.assets | Where-Object { 
-    $MatchesOS = ($_.name -like "*windows*" -or $_.name -like "*.exe" -or $_.name -like "*.zip")
-    $MatchesArch = ($_.name -like "*$Arch*" -or $_.name -like "*x64*" -or $_.name -like "*86_64*")
-    $MatchesOS -and $MatchesArch
+    $_.name -match 'windows.*\.zip$' -or $_.name -match '\.exe$'
 } | Select-Object -First 1
 
 if ($null -eq $Asset) {
-    Write-Host "Could not find a suitable Windows asset for $Arch." -ForegroundColor Red
+    Write-Host "Could not find a suitable Windows asset." -ForegroundColor Red
     Write-Host "Available assets:"
     $ReleaseData.assets.name
     return
