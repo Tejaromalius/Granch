@@ -80,8 +80,28 @@ sudo mv granch /usr/local/bin/
 If you have Go installed, you can install directly:
 
 ```bash
-go install github.com/Tejaromalius/Granch@latest
+go install github.com/Tejaromalius/granch@latest
 ```
+
+## Remote Installation (No Download)
+
+You can install `granch` and add it to your PATH automatically with a single command.
+
+### Linux / macOS (Bash)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Tejaromalius/granch/main/scripts/install.sh | bash
+```
+
+### Windows (PowerShell)
+
+Run this in an administrative PowerShell window to ensure PATH can be updated:
+
+```powershell
+iex (irm https://raw.githubusercontent.com/Tejaromalius/granch/main/scripts/install.ps1)
+```
+
+> **Note:** These scripts fetch the latest release from GitHub. Ensure you have created a Release in your repository for these to work.
 
 ## License
 
